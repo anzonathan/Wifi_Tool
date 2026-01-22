@@ -36,7 +36,7 @@ class WifiTool:
         cprint("\n[*] Scanning for WiFi connections . . . \n","yellow")
 
         try:
-            for cell in Cell.all('wlan0'):
+            for cell in Cell.all('self.interface'):
                 connection += 1
                 ssid.append(cell.ssid)
                 signl.append(str(cell.signal)+" dB")
@@ -98,21 +98,21 @@ if __name__== "__main__":
             wifi.menu()
             cprint("\nroot@WifiScanner:~$ ","green",end="")
             c = input()
-            if c in "scan":
+            if c == "scan":
                 wifi.scanWifi()
-            elif c in "connect":
+            elif c == "connect":
                 cprint("\n[+] Enter SSID : ","green",end="")
                 ssid = input()
                 cprint("[+] Enter PASSWORD : ","green",end="")
                 passkey = input()
                 wifi.connect_wifi(ssid,passkey)
-            elif c in "bruteforce":
+            elif c == "bruteforce":
                 cprint("\n[+] Enter SSID : ","green",end="")
                 ssid = input()
                 cprint("[+] Enter PASSWORD File path : ","green",end="")
                 wordlist = input()
                 wifi.brute_force_pass(ssid,wordlist)
-            elif c in "exit":
+            elif c == "exit":
                 cprint("\n[+] Exiting ...\n",'red')
                 exit()
     except KeyboardInterrupt:
